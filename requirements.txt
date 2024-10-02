@@ -1,0 +1,9 @@
+flask
+gunicorn
+transformers
+torch
+torchaudio
+sentencepiece
+protobuf
+scipy
+soundfile
