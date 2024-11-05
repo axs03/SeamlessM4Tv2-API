@@ -19,4 +19,4 @@ Run the application in your IDE, a flask server should be running.
 ## Containerizing Using Docker
 For containerizing, download the latest version of <a href='https://www.docker.com/products/docker-desktop/'>Docker</a> and install it on your machine. <br>
 Make sure Docker is running. You can check by using <code>docker --version</code>.<br>
-Navigate to <code>your/project/path</code> for this project. Type <code>docker build -t SeamlessM4Tv2-API</code> in your terminal. Docker will now build the container. Run the container by using 
+Navigate to <code>your/project/path</code> for this project. Type <code>docker build -t SeamlessM4Tv2-API</code> in your terminal. Docker will now build the container.
