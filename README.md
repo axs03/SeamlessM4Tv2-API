@@ -3,11 +3,28 @@ Custom API endpoints for generating text-to-speech and speech-to-speech translat
 <p> SeamlessM4T-v2 is a collection of models designed to provide high quality translation, allowing people from different linguistic communities to communicate effortlessly through speech and text. </p>
 
 ## Cloning and Installation
-<p> Begin by cloning the repository onto your local machine using <code>git clone https://github.com/as9219/SeamlessM4Tv2-API.git</code>. Open your preferred IDE and make sure to have the latest version of Python installed.
-<p> Next, install all the requirments using <code>pip install -r requirements.txt</code>
+Begin by cloning the repository onto your local machine using 
+``` gitignore
+git clone https://github.com/as9219/SeamlessM4Tv2-API.git
+```
+Open your preferred IDE and make sure to have the latest version of Python installed.
+Next, install all the requirments using 
+``` bat
+pip install -r requirements.txt
+```
 
 ## Execution and Making Test Calls
-Run the application in your IDE or command line using <code>python App.py</code> or <code>python3 App.py</code>. A flask server should start and you will have your local flask URL.
+Run the application in your IDE or command line using 
+
+``` python
+python App.py
+```
+or
+``` python
+python3 App.py
+``` 
+
+A flask server should start and you will have your local flask URL.
 
 ### CURL Paramaters
 | **Name**        | **Importance**     | **Description**                    |
@@ -19,11 +36,14 @@ Run the application in your IDE or command line using <code>python App.py</code>
 
 ### CURL Commands
 #### T2S
-<code>curl -X POST -H "Content-Type: application/json" -d '{"text": "Hello World, I am making a text to speech curl command!", "src_lang": "eng", "tgt_lang": "fra"}' {flask_localhost_url}/t2s</code>
-<br>
-<br>
+``` bat
+curl -X POST -H "Content-Type: application/json" -d '{"text": "Hello World, I am making a text to speech curl command!", "src_lang": "eng", "tgt_lang": "fra"}' {flask_localhost_url}/t2s
+```
+
 #### S2S
-<code>curl -X POST -H "Content-Type: multipart/form-data" -F "file=path/to/audio_file.wav" -F "tgt_lang=eng" {flask_localhost_url}/s2s</code>
+``` bat
+curl -X POST -H "Content-Type: multipart/form-data" -F "file=path/to/audio_file.wav" -F "tgt_lang=eng" {flask_localhost_url}/s2s
+```
 
 ### Supported Languages
 This was grabbed from <a href='https://huggingface.co/facebook/seamless-m4t-v2-large'>the official documentation</a><br>
