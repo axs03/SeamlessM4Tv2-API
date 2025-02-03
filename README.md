@@ -57,12 +57,12 @@ There are the following endpoints
 ### cURL Commands
 #### T2S
 ``` bash
-curl -X POST -H "Content-Type: application/json" -d '{"text": "Hello World, I am making a text to speech curl command!", "src_lang": "eng", "tgt_lang": "fra"}' http://localhost:8080/t2s
+curl -X POST -H "Content-Type: application/json" -d '{"text": "Hello World, I am making a text to speech curl command!", "src_lang": "eng", "tgt_lang": "fra"}' http://localhost:8080/t2s --output path/to/outputdir/output.wav
 ```
 
 #### S2S
 ``` bash
-curl -X POST -H "Content-Type: multipart/form-data" -F "file=path/to/audio_file.wav" -F "tgt_lang=eng" http://localhost:8080/s2s
+curl -X POST -H "Content-Type: multipart/form-data" -F "file=path/to/audio_file.wav" -F "tgt_lang=eng" http://localhost:8080/s2s --output path/to/outputdir/output.wav
 ```
 
 ### cURL command paramaters
