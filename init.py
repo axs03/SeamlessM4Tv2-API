@@ -8,6 +8,10 @@ import torch
 import scipy
 import torchaudio 
 
+# Only enable for x86 ARM machines, ignores error thrown when running on ARM
+# Proceeds to generate the final audio file, but still throws NNPACK! not supported error
+torch.backends.nnpack.enabled = False
+
 def initialize_model():
     if torch.backends.mps.is_available():
         device = torch.device("mps")
