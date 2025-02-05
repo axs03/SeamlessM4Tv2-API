@@ -31,17 +31,18 @@ Coming soon lol
 ``` bash
 docker build -t SeamlessAPI:v1.0 .
 ```
-Docker will now build the source code into an <i>image</i>. This process will take <code~12 minutes</code> depending on your machine. <br>
+Docker will now build the source code into an <i>image</i>. This process will take <code>~12 minutes</code> depending on your machine. <br>
 Once this image is built, we can now peoceed to building the <i>container</i> using:
 ``` bash
-docker run [OPTIONS] -d -p 8080:8080 --name seamlessapi_container SeamlessAPI:v1.0
+docker run [OPTIONS] -p 8080:8080 --name seamlessapi_container SeamlessAPI:v1.0
 ```
 
 You can have the following options for building the container:
-| **Option** | **About** |
+| **[OPTIONS]** | **About** |
 | -------- | ------------ |
-| --privileged | Runs container with heightened privileges |
-| --gpus all | Use if you have GPUs available in your host machine for the container to use |
+| <code>-d</code> | Runs in detached mode, will not display any logs in terminal |
+| <code>--privileged</code> | Runs container with heightened privileges |
+| <code>--gpus all</code> | Use if you have GPUs available in your host machine for the container to use |
 
 Docker builds the container and now our endpoints are ready for querying!
 <br>
