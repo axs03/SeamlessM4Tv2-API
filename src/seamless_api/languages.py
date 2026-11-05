@@ -1,6 +1,6 @@
 """Languages supported by SeamlessM4T v2.
 
-Generated from Supported_Langs.md (the facebook/seamless-m4t-v2-large model card), then
+Generated from docs/supported-languages.md (the facebook/seamless-m4t-v2-large model card), then
 corrected against the model's own generation_config.json and tokenizer, which the
 model card table disagrees with in a few places:
 - Malay text uses the code zlm (the card lists zsm, which the tokenizer does not have).

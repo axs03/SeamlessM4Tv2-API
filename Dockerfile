@@ -22,7 +22,9 @@ COPY requirements.txt .
 RUN pip install --index-url "${TORCH_INDEX_URL}" "torch==${TORCH_VERSION}" \
     && pip install -r requirements.txt
 
-COPY app.py audio.py config.py gunicorn.conf.py languages.py model.py ./
+COPY pyproject.toml gunicorn.conf.py ./
+COPY src/ src/
+RUN pip install --no-deps . && rm -rf build src
 
 # Run as a non-root user. Model weights (~10 GB) are cached in /models;
 # mount a volume there so they download only once.
@@ -37,4 +39,4 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30m --retries=3 \
     CMD python -c "import os,sys,urllib.request; sys.exit(0 if urllib.request.urlopen(f'http://127.0.0.1:{os.environ[\"PORT\"]}/health', timeout=4).status == 200 else 1)"
 
-CMD ["gunicorn", "-c", "gunicorn.conf.py", "app:create_app()"]
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "seamless_api.app:create_app()"]

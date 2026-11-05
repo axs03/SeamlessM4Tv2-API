@@ -7,9 +7,9 @@ import numpy as np
 import pytest
 from scipy.io import wavfile
 
-import audio as audio_io
-from app import create_app
-from config import Settings
+from seamless_api import audio as audio_io
+from seamless_api.app import create_app
+from seamless_api.config import Settings
 
 
 class FakeTranslator:

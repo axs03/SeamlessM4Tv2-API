@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from transformers import AutoProcessor, SeamlessM4Tv2Model
 
-from audio import SAMPLE_RATE
+from .audio import SAMPLE_RATE
 
 log = logging.getLogger(__name__)
 

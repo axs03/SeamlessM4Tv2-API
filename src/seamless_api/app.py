@@ -15,9 +15,9 @@ from urllib.parse import quote
 from flask import Flask, Response, jsonify, request
 from werkzeug.exceptions import HTTPException
 
-import audio as audio_io
-from config import Settings
-from languages import LANGUAGES
+from . import audio as audio_io
+from .config import Settings
+from .languages import LANGUAGES
 
 log = logging.getLogger("seamless_api")
 
@@ -67,7 +67,7 @@ class ModelState:
 
 def _default_loader(settings: Settings):
     def load():
-        from model import Translator  # heavy import (torch, transformers)
+        from .model import Translator  # heavy import (torch, transformers)
 
         return Translator(settings.model_id, device=settings.device, dtype=settings.dtype)
 
@@ -252,6 +252,6 @@ def create_app(settings: Settings | None = None, loader=None) -> Flask:
     return app
 
 
-# gunicorn runs the factory directly: gunicorn "app:create_app()".
+# gunicorn runs the factory directly: gunicorn "seamless_api.app:create_app()".
 if __name__ == "__main__":
     create_app().run(host="0.0.0.0", port=int(os.getenv("PORT", "8080")))

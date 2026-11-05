@@ -3,9 +3,23 @@ name = "seamless-m4t-v2-api"
 version = "1.0.0"
 description = "HTTP API and Docker image for Meta's SeamlessM4T v2 (all five tasks)"
 requires-python = ">=3.11"
+license = "MIT"
+# Pinned runtime deps live in requirements.txt (shared with the Docker build).
+# torch is installed separately (CPU or CUDA build), see Dockerfile.
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0", "ruff==0.17.3"]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
+pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "-m 'not integration'"
 markers = ["integration: needs torch + transformers and downloads the processor (~5 MB)"]
