@@ -44,7 +44,7 @@ def translator():
         SeamlessM4Tv2Model,
     )
 
-    from model import Translator
+    from seamless_api.model import Translator
 
     try:
         path = snapshot_download(REPO, allow_patterns=SMALL_FILES)
@@ -78,7 +78,7 @@ def test_speech_tasks(translator):
 
 
 def test_language_table_matches_model(translator):
-    from languages import LANGUAGES
+    from seamless_api.languages import LANGUAGES
 
     gen = translator.model.generation_config
     text_codes = set(gen.text_decoder_lang_to_code_id)

@@ -69,8 +69,8 @@ Image names must be lowercase. `--privileged` is not needed.
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install --index-url https://download.pytorch.org/whl/cpu torch==2.15.0   # or a CUDA build
-pip install -r requirements.txt
-gunicorn -c gunicorn.conf.py "app:create_app()"      # serves on http://localhost:8080
+pip install -r requirements.txt && pip install --no-deps -e .
+gunicorn -c gunicorn.conf.py "seamless_api.app:create_app()"      # serves on http://localhost:8080
 ```
 
 ffmpeg must be on your `PATH`.
@@ -79,7 +79,7 @@ ffmpeg must be on your `PATH`.
 
 Language codes are the model's 3-letter codes (`eng`, `fra`, `hin`, `cmn`, ...). Not every
 language works for every task: speech output covers 36 languages, text output 98. See
-[Supported_Langs.md](Supported_Langs.md) or `GET /languages`. Unsupported combinations return
+[docs/supported-languages.md](docs/supported-languages.md) or `GET /languages`. Unsupported combinations return
 a `400` with a clear message.
 
 ### Text to text
@@ -174,10 +174,25 @@ To serve more traffic, run more containers behind a load balancer.
 
 ```bash
 pip install --index-url https://download.pytorch.org/whl/cpu torch==2.15.0
-pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt && pip install --no-deps -e .
 ruff check .
 pytest                   # API tests with a fake model, no download
 pytest -m integration    # real transformers code path with a tiny random model (~5 MB download)
+```
+
+## Project layout
+
+```text
+src/seamless_api/   application package
+  app.py            Flask app factory and HTTP routes
+  model.py          SeamlessM4T v2 model loading and inference
+  audio.py          audio decoding/encoding (ffmpeg, WAV)
+  languages.py      supported-language table
+  config.py         settings from environment variables
+tests/              unit tests (fake model) and integration tests
+docs/               supported-languages.md
+gunicorn.conf.py    production server settings
+Dockerfile, docker-compose*.yml   container build and run
 ```
 
 ## License

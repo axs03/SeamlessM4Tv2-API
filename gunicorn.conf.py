@@ -1,4 +1,4 @@
-"""gunicorn settings. Run with: gunicorn -c gunicorn.conf.py "app:create_app()"."""
+"""gunicorn settings. Run with: gunicorn -c gunicorn.conf.py "seamless_api.app:create_app()"."""
 
 import os
 
