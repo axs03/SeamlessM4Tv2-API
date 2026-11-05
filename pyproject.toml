@@ -1,0 +1,18 @@
+[project]
+name = "seamless-m4t-v2-api"
+version = "1.0.0"
+description = "HTTP API and Docker image for Meta's SeamlessM4T v2 (all five tasks)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = ["integration: needs torch + transformers and downloads the processor (~5 MB)"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
